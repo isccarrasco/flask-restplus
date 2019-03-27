@@ -135,6 +135,7 @@ class Api(object):
         self.ns_paths = dict()
 
         self.representations = OrderedDict(DEFAULT_REPRESENTATIONS)
+        self.consumes = OrderedDict(DEFAULT_REPRESENTATIONS)
         self.urls = {}
         self.prefix = prefix
         self.default_mediatype = default_mediatype
@@ -777,6 +778,12 @@ class Api(object):
         '''
         def wrapper(func):
             self.representations[mediatype] = func
+            return func
+        return wrapper
+
+    def consume(self, mediatype):
+        def wrapper(func):
+            self.consumes[mediatype] = func
             return func
         return wrapper
 
