@@ -782,6 +782,12 @@ class Api(object):
         return wrapper
 
     def consume(self, mediatype):
+        '''
+        For adding new request media types.
+        We coudl add the media type on the swagger ui, it will require
+        to implement the validation or the configuration depending on
+        the data type you pass to the decorator.
+        '''
         def wrapper(func):
             self.consumes[mediatype] = func
             return func
